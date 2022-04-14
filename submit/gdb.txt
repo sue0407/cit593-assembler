@@ -1,0 +1,70 @@
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+$10 = 32
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+Undefined command: "nn".  Try "help".
+47	      c = fgetc(my_obj_file);
+45	    while(c != EOF){
+46	      printf("%c", c);
+Starting program: /home/codio/workspace/submit/lc4 test1.obj
+[Inferior 1 (process 808) exited normally]
