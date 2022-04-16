@@ -7,6 +7,9 @@
 /************************************************************************/
 
 #include <stdio.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "lc4_memory.h"
 
 /* declarations of functions that must defined in lc4_loader.c */
@@ -35,15 +38,117 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
   
 {
   int byte_read; // intialize int byte-read
-  if (byte_read = fgetc(my_obj_file) == EOF) {
-    // imp0lement hash table
-    // bitwise
-  }
-  while ((byte_read = fgetc(my_obj_file)) != EOF) {
-    printf("byte_read: %d\n", byte_read); // REMOVE
-    return 0;
+ 
+  if ((byte_read = fgetc(my_obj_file)) == EOF) { // check 
+      fclose(my_obj_file);
+  // implement free memory
+    printf("error: EOF error.");
+    return 2;
+  } 
+
+  char* header_str = ""; // initialize header_str
+  char* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  puts(hex_str); // write to hex_str
+
+  strcat(header_str, hex_str); // save the first half of hex code of header to header_str
+
+  if ((byte_read = fgetc(my_obj_file)) == EOF) { // check 
+      fclose(my_obj_file);
+  // implement free memory
+    printf("error: EOF error.");
+    return 2;
   }
 
-	return 2 ;
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  puts(hex_str); // write to hex_str
+  strcat(header_str, hex_str); // save the second half of hex code of header to header_str
+
+  unsigned short int header = (short unsigned int)strtol(hex_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+
+  printf("0x%x\n", header);
+
+  return (0);
+
+/* TODO: Fix errors related to this, please ignore until then
+short unsigned int hex_read = get_two_bytes(my_obj_file); // read the first hex (2 bytes) from the file
+if (hex_read == NULL) return 2;
+short unsigned int header = hex_read; // assign hex_read to header
+
+hex_read = get_two_bytes(my_obj_file); // read the next hex (2 bytes) from the file
+if (hex_read == NULL) return 2;
+short unsigned int address = hex_read; // assign hex_read to address
+
+hex_read = get_two_bytes(my_obj_file); // read the next hex (2 bytes) from the file
+if (hex_read == NULL) return 2;
+short unsigned int n = hex_read; // assign hex_read to n
+
+ return (0);
+*/
 }
+
+
+/*
+Bottom is all helper functions to make the code cleaner and easier to make
+Please ignore for now because they have errors
+
+
+handle_eof: helper function
+*//*
+void* handle_eof(FILE* my_obj_file){
+  fclose(my_obj_file);
+  // implement free memory
+  printf("error: EOF error.");
+}*/
+
+
+/*
+get_two_bytes: helper function
+*/
+/*
+short unsigned int get_two_bytes(FILE* my_obj_file){
+  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+ 
+  if (byte_read == EOF) { // check 
+    handle_eof(my_obj_file);
+    return NULL;
+  } 
+
+  char* hex_str = ""; // initialize hex_str
+  strcat(hex_str, num_to_hexstr(byte_read)); // save the first half of hex code of header to header_str
+  
+  if (byte_read == EOF) { // check 
+    handle_eof(my_obj_file);
+    return NULL;
+  } 
+  strcat(hex_str, num_to_hexstr(byte_read)); // save the second half of hex code of header to header_str
+  
+  unsigned short int two_bytes = str_to_num(hex_str); // convert hex_str to short unsigned int type
+  return two_bytes;
+}
+
+*/
+
+/*
+int_to_hexstr: helper function to cast an int to hex string
+input: an int
+return: a hex string
+*/
+/*
+char* num_to_hexstr(int num){
+  char* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+  sprintf(hex_str, "%x", num); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  puts(hex_str); // write to hex_str
+  return hex_str;
+}
+*/
+/*
+str_to_num: helper function to convert a hex string to short unsigned int
+*/
+/*
+short unsigned int str_to_num(char *hex_str){
+  return (short unsigned int)strtol(hex_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+}
+
+*/
 

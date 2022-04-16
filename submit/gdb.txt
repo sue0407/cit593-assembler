@@ -68,3 +68,109 @@ Undefined command: "nn".  Try "help".
 46	      printf("%c", c);
 Starting program: /home/codio/workspace/submit/lc4 test1.obj
 [Inferior 1 (process 808) exited normally]
+Temporary breakpoint 1 at 0x4006f0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+46	  printf("BEFORE PARSEFile\n");
+49	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x602670, memory=0x7fffffffe320) at lc4_loader.c:40
+40	  printf("TEST");
+43	  printf("TEST");
+45	  if ((byte_read = fgetc(my_obj_file)) == EOF) { // check 
+50	  printf("TEST");
+52	  char* header_str = ""; // initialize header_str
+54	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe060, data=<optimized out>, n=2)
+    at genops.c:412
+412	genops.c: No such file or directory.
+No symbol "byte_read" in current context.
+Temporary breakpoint 2 at 0x4006f0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+46	  printf("BEFORE PARSEFile\n");
+49	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x602670, memory=0x7fffffffe320) at lc4_loader.c:40
+40	  int byte_read; // intialize int byte-read
+43	= fgetc(my_obj_file)) == EOF) { // check 
+45	) == EOF) { // check 
+50	ze header_str
+52	r* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+$1 = 202
+54	ction to send formatted hex representation to a string pointer hex_str
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe060, data=<optimized out>, n=2)
+    at genops.c:412
+412	genops.c: No such file or directory.
+No symbol "byte_read" in current context.
+Temporary breakpoint 3 at 0x4006f0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 3, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+46	  printf("BEFORE PARSEFile\n");
+49	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x602670, memory=0x7fffffffe320) at lc4_loader.c:40
+40	  int byte_read; // intialize int byte-read
+43	= fgetc(my_obj_file)) == EOF) { // check 
+45	) == EOF) { // check 
+50	ze header_str
+52	r* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+54	ction to send formatted hex representation to a string pointer hex_str
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe060, data=<optimized out>, n=2)
+    at genops.c:412
+412	genops.c: No such file or directory.
+Undefined command: "y".  Try "help".
+Program not restarted.
+Temporary breakpoint 4 at 0x4006f0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 4, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+46	  printf("BEFORE PARSEFile\n");
+49	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x602670, memory=0x7fffffffe320) at lc4_loader.c:40
+40	  int byte_read; // intialize int byte-read
+43	= fgetc(my_obj_file)) == EOF) { // check 
+45	) == EOF) { // check 
+50	ze header_str
+52	r* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+54	ction to send formatted hex representation to a string pointer hex_str
+$2 = 0x40083f <open_file+31> "H\211E\350H\203", <incomplete sequence \350>
+Quit
+Quit
+Quit
+Quit
+This command cannot be used at the top level.

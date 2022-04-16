@@ -16,7 +16,7 @@
 int main (int argc, char** argv) {
   
 /* leave plenty of room for the filename */
-  
+
   char* filename = NULL; // name of the obj file
 
 	/**
@@ -43,10 +43,12 @@ int main (int argc, char** argv) {
     }
   
 
-
+  printf("BEFORE PARSEFile\n");
 	/* step 3: call function: parse_file() in lc4_loader.c 	*/
 	/*   TODO: call function & check for errors		*/
   parse_file (my_obj_file, &memory);
+  
+
 
 	/* step 4: call function: reverse_assemble() in lc4_disassembler.c */
 	/*   TODO: call function & check for errors		*/
