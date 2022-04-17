@@ -174,3 +174,184 @@ Quit
 Quit
 Quit
 This command cannot be used at the top level.
+Temporary breakpoint 1 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:72
+72	  short unsigned int header = get_two_bytes(my_obj_file);
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+Temporary breakpoint 2 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:72
+72	  short unsigned int header = get_two_bytes(my_obj_file);
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 3 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 3, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:72
+72	  short unsigned int header = get_two_bytes(my_obj_file);
+get_two_bytes (my_obj_file=0x603670) at lc4_loader.c:35
+35	  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+37	  if (feof(my_obj_file)) {
+42	  char two_bytes_str [5] = {}; // initialize header_str
+45	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+$1 = 202
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+No symbol "hex_str" in current context.
+Not confirmed.
+Temporary breakpoint 4 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 4, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 1 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 2 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 1 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 2 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Temporary breakpoint 3 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 3, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:72
+72	  short unsigned int header = get_two_bytes(my_obj_file);
+get_two_bytes (my_obj_file=0x603670) at lc4_loader.c:35
+35	  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+37	  if (feof(my_obj_file)) {
+42	  char two_bytes_str [5] = {}; // initialize header_str
+45	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+$1 = 0x400ec2 "rb"
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Quit
+Quit
+Quit
+Temporary breakpoint 1 at 0x400780: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:72
+72	  short unsigned int header = get_two_bytes(my_obj_file);
+get_two_bytes (my_obj_file=0x603670) at lc4_loader.c:35
+35	  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+37	  if (feof(my_obj_file)) {
+42	  char two_bytes_str [5] = {}; // initialize header_str
+$1 = 202
+44	  printf("two_bytes_str: %s\n hex_str: %s\n", two_bytes_str, hex_str);
+45	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+__sprintf (s=0x400ef2 "rb", format=0x400f15 "%x") at sprintf.c:27
+27	sprintf.c: No such file or directory.
+31	in sprintf.c
+32	in sprintf.c
+31	in sprintf.c
+32	in sprintf.c
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
+412	genops.c: No such file or directory.
+Undefined command: "nq".  Try "help".

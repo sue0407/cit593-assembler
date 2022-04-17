@@ -28,6 +28,38 @@ FILE* open_file(char* file_name)
 }
 
 /*
+get_two_bytes: helper function
+*/
+
+short unsigned int get_two_bytes(FILE* my_obj_file){
+  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+
+  if (feof(my_obj_file)) {
+    // handle_eof(my_obj_file);
+    return 2;
+  }
+
+  char two_bytes_str [5] = {}; // initialize header_str
+  char hex_str [3] = {}; // initialize hex_str length at 5 (4 hex numbers + null terminator)
+
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  strcat(two_bytes_str, hex_str); // save the second half of hex code of two_bytes to two_bytes_str
+  
+  byte_read = fgetc(my_obj_file);
+  if (feof(my_obj_file)) {
+    // handle_eof(my_obj_file);
+    return 2;
+  }
+
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  strcat(two_bytes_str, hex_str); // save the second half of hex code of two_bytes to two_bytes_str
+
+  
+  short unsigned int two_bytes = (short unsigned int)strtol(two_bytes_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+  return two_bytes;
+}
+
+/*
 parse_file:  read in and parse the contents of the open .OBJ file as well as populate the linked_list as it reads the .OBJ file. 
 */
 int parse_file (FILE* my_obj_file, row_of_memory** memory)
@@ -37,147 +69,21 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
  */
   
 {
-  int byte_read; // intialize int byte-read
- 
-  if ((byte_read = fgetc(my_obj_file)) == EOF) { // check 
-      fclose(my_obj_file);
-  // implement free memory
-    printf("error: EOF error.");
-    return 2;
-  } 
+  short unsigned int header = get_two_bytes(my_obj_file);
 
-  // below is get_header section
-  char header_str [5] = {}; // initialize header_str
-  char* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  printf("header: 0x%x\n", header);
 
-  strcat(header_str, hex_str); // save the first half of hex code of header to header_str
-  
-  byte_read = fgetc(my_obj_file);
-  printf("byte_read %d\n",byte_read);
+  short unsigned int address = get_two_bytes(my_obj_file);
 
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+  printf("address:0x%x\n", address);
 
-  strcat(header_str, hex_str); // save the second half of hex code of header to header_str
+  short unsigned int n = get_two_bytes(my_obj_file);
 
-  unsigned short int header = (short unsigned int)strtol(header_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+  printf("n: 0x%x\n", n);  
 
-  printf("0x%x\n", header);
-
-  // below is get_address section
-  char address_str [5] = {}; // initialize address_str
-  byte_read = fgetc(my_obj_file); // get the next byte
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer address_str
-
-  strcat(address_str, hex_str); // save the first half of hex code of address to address_str
-
-  byte_read = fgetc(my_obj_file); // get the next byte
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
-
-  strcat(address_str, hex_str); // save the second half of hex code of address to address_str
-
-  unsigned short int address = (short unsigned int)strtol(address_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
-
-  printf("0x%x\n", address);
-
-  // below is get_n section
-  char n_str [5] = {}; // initialize n_str
-  byte_read = fgetc(my_obj_file); // get the next byte
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer address_str
-
-  strcat(n_str, hex_str); // save the first half of hex code of address to n_str
-
-  byte_read = fgetc(my_obj_file); // get the next byte
-  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
-
-  strcat(n_str, hex_str); // save the second half of hex code of address to n_str
-
-  unsigned short int n = (short unsigned int)strtol(n_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
-
-  printf("0x%x\n", n);  
+  row_of_memory *list = NULL;
+  add_to_list(&list, address, header);
+  print_list(list);
 
   return (0);
-
-/* TODO: Fix errors related to this, please ignore until then
-
-short unsigned int hex_read = get_two_bytes(my_obj_file); // read the first hex (2 bytes) from the file
-if (hex_read == NULL) return 2;
-short unsigned int header = hex_read; // assign hex_read to header
-
-hex_read = get_two_bytes(my_obj_file); // read the next hex (2 bytes) from the file
-if (hex_read == NULL) return 2;
-short unsigned int address = hex_read; // assign hex_read to address
-
-hex_read = get_two_bytes(my_obj_file); // read the next hex (2 bytes) from the file
-if (hex_read == NULL) return 2;
-short unsigned int n = hex_read; // assign hex_read to n
-
- return (0);
-*/
 }
-
-
-/*
-Bottom is all helper functions to make the code cleaner and easier to make
-Please ignore for now because they have errors
-
-
-handle_eof: helper function
-*//*
-void* handle_eof(FILE* my_obj_file){
-  fclose(my_obj_file);
-  // implement free memory
-  printf("error: EOF error.");
-}*/
-
-
-/*
-get_two_bytes: helper function
-*/
-/*
-short unsigned int get_two_bytes(FILE* my_obj_file){
-  int byte_read = fgetc(my_obj_file); // intialize int byte-read
- 
-  if (byte_read == EOF) { // check 
-    handle_eof(my_obj_file);
-    return NULL;
-  } 
-
-  char* hex_str = ""; // initialize hex_str
-  strcat(hex_str, num_to_hexstr(byte_read)); // save the first half of hex code of header to header_str
-  
-  if (byte_read == EOF) { // check 
-    handle_eof(my_obj_file);
-    return NULL;
-  } 
-  strcat(hex_str, num_to_hexstr(byte_read)); // save the second half of hex code of header to header_str
-  
-  unsigned short int two_bytes = str_to_num(hex_str); // convert hex_str to short unsigned int type
-  return two_bytes;
-}
-
-*/
-
-/*
-int_to_hexstr: helper function to cast an int to hex string
-input: an int
-return: a hex string
-*/
-/*
-char* num_to_hexstr(int num){
-  char* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
-  sprintf(hex_str, "%x", num); // use sprintf function to send formatted hex representation to a string pointer hex_str
-  puts(hex_str); // write to hex_str
-  return hex_str;
-}
-*/
-/*
-str_to_num: helper function to convert a hex string to short unsigned int
-*/
-/*
-short unsigned int str_to_num(char *hex_str){
-  return (short unsigned int)strtol(hex_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
-}
-
-*/
-

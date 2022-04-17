@@ -42,8 +42,7 @@ int main (int argc, char** argv) {
 		my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
     }
   
-
-  printf("BEFORE PARSEFile\n");
+  
 	/* step 3: call function: parse_file() in lc4_loader.c 	*/
 	/*   TODO: call function & check for errors		*/
   parse_file (my_obj_file, &memory);

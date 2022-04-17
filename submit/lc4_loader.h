@@ -30,3 +30,12 @@ FILE* open_file(char* file_name) ;
  * returns 0 upon successs, non-zero if an error occurs.
  */
 int parse_file (FILE* my_obj_file, row_of_memory** memory) ;
+
+
+/**
+ * reads two bytes from my_obj_file, casts them into strings
+ * to allow concat, then converts back into short unsigned int
+ *
+ * returns 0 upon success, non-zero if an error occurs.
+ */
+short unsigned int get_two_bytes (FILE* my_obj_file) ;
