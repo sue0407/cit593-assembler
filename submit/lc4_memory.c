@@ -27,12 +27,15 @@ int add_to_list (row_of_memory** head,
           temp->contents = contents;
           return 0;
         }
+        temp = temp->next;
       }
     }
     
   /* allocate memory for a single node */
   row_of_memory *newMemory = malloc(sizeof(row_of_memory));
-  if (newMemory == NULL) return -1;
+  if (newMemory == NULL) {
+    return -1;
+  }
 
 	/* populate fields in newly allocated node w/ address&contents, NULL for label and assembly */
   newMemory->address = address;
@@ -42,22 +45,33 @@ int add_to_list (row_of_memory** head,
   newMemory->next = NULL;
 
 	/* if *head is NULL, node created is the new head of the list! */
-  if (*head == NULL) *head = newMemory;
+  if (*head == NULL) {
+    *head = newMemory;
+  }
 
 	/* otherwise, insert node into the list in address ascending order */
   else {
-    row_of_memory *prev, *curr = *head;
+    row_of_memory *curr = *head;
+    if (newMemory->address < curr->address) {
+      newMemory->next = *head;
+      *head = newMemory; 
+
+      return 0;
+    }
+
     if (curr->next == NULL) {
       curr->next = newMemory;
       return 0;
     }
 
-    curr = curr->next;
+    row_of_memory *prev = *head;
+    curr = prev->next;
+
     while(prev->next != NULL & curr->next != NULL) {
       if (prev->address < address & curr->address > address) {
         prev->next = newMemory;
         newMemory->next = curr;
-        prev = prev->next;
+        return 0;
       }
       prev = prev->next;
       curr = curr->next;
@@ -118,14 +132,15 @@ void print_list (row_of_memory* head )
   row_of_memory *curr = head;
 
 	/* print out a header */
-  printf("header: 0x%X\n", curr->contents);
-  curr = curr->next;
+  printf("header: TODO\n");
     
   /* don't print assembly directives for non opcode 1 instructions if you are doing extra credit */
 
 	/* traverse linked list, print contents of each node */
   while (curr != NULL) {
-    printf("header: 0x%X\n", curr->contents);
+    printf("address: 0x%X\n", curr->address);
+    printf("contents: 0x%X\n", curr->contents);
+    printf("label: %s\n", curr->label);
     curr = curr->next;
   }
 	return ;
@@ -143,6 +158,7 @@ int delete_list    (row_of_memory** head )
   curr = curr->next;
 	/* delete entire list node by node */
   while (curr != NULL) {
+    if (prev->label != NULL) free(prev->label);
     free(prev);
 
     prev = prev->next;

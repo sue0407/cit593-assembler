@@ -355,3 +355,226 @@ Program received signal SIGSEGV, Segmentation fault.
 0x00007ffff7a704e6 in __GI__IO_default_xsputn (f=0x7fffffffe040, data=<optimized out>, n=2) at genops.c:412
 412	genops.c: No such file or directory.
 Undefined command: "nq".  Try "help".
+Temporary breakpoint 1 at 0x400730: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:67
+67	  while (!feof(my_obj_file)) {
+69	    short unsigned int header_type = get_two_bytes(my_obj_file);
+70	    printf("header: %x\n", header_type);
+$1 = 51934
+72	    short unsigned int address = get_two_bytes(my_obj_file);
+get_two_bytes (my_obj_file=0x603670) at lc4_loader.c:35
+35	  int byte_read = fgetc(my_obj_file); // intialize int byte-read
+37	  char two_bytes_str [5] = {}; // initialize two_bytes_str length at 5 (4 hex numbers + null terminator)
+$2 = 0
+38	  char hex_str [3] = {}; // initialize hex_str length at 3 (2 hex numbers + null terminator)
+40	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+41	  two_bytes_str [0] = hex_str[0];
+42	  two_bytes_str [1] = hex_str[1]; 
+45	  byte_read = fgetc(my_obj_file);
+47	  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+$3 = 10
+48	  two_bytes_str [2] = hex_str[0];
+$4 = "a\000"
+49	  two_bytes_str [3] = hex_str[1];
+50	  two_bytes_str [4] = '\0';
+$5 = "0\000a\000"
+Quit
+Temporary breakpoint 1 at 0x4007c0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  parse_file (my_obj_file, &memory);
+parse_file (my_obj_file=0x603670, memory=0x7fffffffe320) at lc4_loader.c:61
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+64	    printf("header: %x\n", header_type);
+66	    short unsigned int address = get_two_bytes(my_obj_file);
+67	    printf("address: %x\n", address);
+69	    short unsigned int n = get_two_bytes(my_obj_file);
+70	    printf("n: %x\n", n);  
+72	    if (header_type == 0xCADE | header_type == 0xDADA) {
+73	      for (int i = 0; i < n; i++) {
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+78	    }
+79	    if (header_type == 0xC3B7) {
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+64	    printf("header: %x\n", header_type);
+66	    short unsigned int address = get_two_bytes(my_obj_file);
+67	    printf("address: %x\n", address);
+69	    short unsigned int n = get_two_bytes(my_obj_file);
+70	    printf("n: %x\n", n);  
+72	    if (header_type == 0xCADE | header_type == 0xDADA) {
+73	      for (int i = 0; i < n; i++) {
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+Undefined command: "nn".  Try "help".
+74	          short unsigned int contents = get_two_bytes(my_obj_file);
+75	          printf("contents: %x\n", contents);
+76	          add_to_list(memory, address + i, contents);
+73	      for (int i = 0; i < n; i++) {
+78	    }
+79	    if (header_type == 0xC3B7) {
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+64	    printf("header: %x\n", header_type);
+66	    short unsigned int address = get_two_bytes(my_obj_file);
+67	    printf("address: %x\n", address);
+69	    short unsigned int n = get_two_bytes(my_obj_file);
+70	    printf("n: %x\n", n);  
+72	    if (header_type == 0xCADE | header_type == 0xDADA) {
+79	    if (header_type == 0xC3B7) {
+80	      char* label = malloc(sizeof(char) * (n + 1));
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+$1 = 0x6049d0 "VALUES"
+88	        row_of_memory* searched_memory = search_address(*memory, address);
+89	        if (searched_memory != NULL) {
+90	          searched_memory->label = label;
+91	        } else {
+$2 = (row_of_memory *) 0x604940
+$3 = 0x6049d0 "VALUES"
+96	    }
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+64	    printf("header: %x\n", header_type);
+66	    short unsigned int address = get_two_bytes(my_obj_file);
+67	    printf("address: %x\n", address);
+69	    short unsigned int n = get_two_bytes(my_obj_file);
+70	    printf("n: %x\n", n);  
+72	    if (header_type == 0xCADE | header_type == 0xDADA) {
+79	    if (header_type == 0xC3B7) {
+80	      char* label = malloc(sizeof(char) * (n + 1));
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+88	        row_of_memory* searched_memory = search_address(*memory, address);
+89	        if (searched_memory != NULL) {
+96	    }
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+64	    printf("header: %x\n", header_type);
+66	    short unsigned int address = get_two_bytes(my_obj_file);
+67	    printf("address: %x\n", address);
+69	    short unsigned int n = get_two_bytes(my_obj_file);
+70	    printf("n: %x\n", n);  
+72	    if (header_type == 0xCADE | header_type == 0xDADA) {
+79	    if (header_type == 0xC3B7) {
+80	      char* label = malloc(sizeof(char) * (n + 1));
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+82	          int byte_read = fgetc(my_obj_file);
+83	          char letter = byte_read;
+85	          strncat(label, &letter, 1);
+81	        for (int i = 0; i < n; i++) {
+88	        row_of_memory* searched_memory = search_address(*memory, address);
+89	        if (searched_memory != NULL) {
+90	          searched_memory->label = label;
+91	        } else {
+96	    }
+61	  while (!feof(my_obj_file)) {
+63	    short unsigned int header_type = get_two_bytes(my_obj_file);
+
+Program received signal SIGSEGV, Segmentation fault.
+_IO_getc (fp=0x6666666666) at getc.c:37
+37	getc.c: No such file or directory.
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+The program is not being run.
+The program is not being run.
