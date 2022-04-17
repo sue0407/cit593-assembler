@@ -46,31 +46,60 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
     return 2;
   } 
 
-  char* header_str = ""; // initialize header_str
+  // below is get_header section
+  char header_str [5] = {}; // initialize header_str
   char* hex_str; // initialize hex_str length at 5 (4 hex numbers + null terminator)
   sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
-  puts(hex_str); // write to hex_str
 
   strcat(header_str, hex_str); // save the first half of hex code of header to header_str
-
-  if ((byte_read = fgetc(my_obj_file)) == EOF) { // check 
-      fclose(my_obj_file);
-  // implement free memory
-    printf("error: EOF error.");
-    return 2;
-  }
+  
+  byte_read = fgetc(my_obj_file);
+  printf("byte_read %d\n",byte_read);
 
   sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
-  puts(hex_str); // write to hex_str
+
   strcat(header_str, hex_str); // save the second half of hex code of header to header_str
 
-  unsigned short int header = (short unsigned int)strtol(hex_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+  unsigned short int header = (short unsigned int)strtol(header_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
 
   printf("0x%x\n", header);
+
+  // below is get_address section
+  char address_str [5] = {}; // initialize address_str
+  byte_read = fgetc(my_obj_file); // get the next byte
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer address_str
+
+  strcat(address_str, hex_str); // save the first half of hex code of address to address_str
+
+  byte_read = fgetc(my_obj_file); // get the next byte
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+
+  strcat(address_str, hex_str); // save the second half of hex code of address to address_str
+
+  unsigned short int address = (short unsigned int)strtol(address_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+
+  printf("0x%x\n", address);
+
+  // below is get_n section
+  char n_str [5] = {}; // initialize n_str
+  byte_read = fgetc(my_obj_file); // get the next byte
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer address_str
+
+  strcat(n_str, hex_str); // save the first half of hex code of address to n_str
+
+  byte_read = fgetc(my_obj_file); // get the next byte
+  sprintf(hex_str, "%x", byte_read); // use sprintf function to send formatted hex representation to a string pointer hex_str
+
+  strcat(n_str, hex_str); // save the second half of hex code of address to n_str
+
+  unsigned short int n = (short unsigned int)strtol(n_str, NULL, 16); // use strtol function to convert hex string to short unsigned int
+
+  printf("0x%x\n", n);  
 
   return (0);
 
 /* TODO: Fix errors related to this, please ignore until then
+
 short unsigned int hex_read = get_two_bytes(my_obj_file); // read the first hex (2 bytes) from the file
 if (hex_read == NULL) return 2;
 short unsigned int header = hex_read; // assign hex_read to header
