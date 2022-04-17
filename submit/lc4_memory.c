@@ -161,9 +161,10 @@ int delete_list    (row_of_memory** head )
     if (prev->label != NULL) free(prev->label);
     free(prev);
 
-    prev = prev->next;
+    prev = curr;
     curr = curr->next;
   }
+
 	/* set the list head pointer to NULL upon deletion */
   *head = NULL;
 	return 0 ;
