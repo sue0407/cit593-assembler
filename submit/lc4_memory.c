@@ -138,9 +138,10 @@ void print_list (row_of_memory* head )
 
 	/* traverse linked list, print contents of each node */
   while (curr != NULL) {
-    printf("address: 0x%X\n", curr->address);
-    printf("contents: 0x%X\n", curr->contents);
+    printf("\naddress: 0x%X\n", curr->address);
     printf("label: %s\n", curr->label);
+    printf("contents: 0x%X\n", curr->contents);
+    printf("assembly: %s\n", curr->assembly);
     curr = curr->next;
   }
 	return ;
@@ -164,6 +165,9 @@ int delete_list    (row_of_memory** head )
     prev = curr;
     curr = curr->next;
   }
+  /* free up node that weren't accounted for in while loop */
+  if (prev->label != NULL) free(prev->label);
+  free(prev);
 
 	/* set the list head pointer to NULL upon deletion */
   *head = NULL;

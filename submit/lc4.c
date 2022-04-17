@@ -46,6 +46,7 @@ int main (int argc, char** argv) {
 	/* step 3: call function: parse_file() in lc4_loader.c 	*/
 	/*   TODO: call function & check for errors		*/
   parse_file (my_obj_file, &memory);
+  print_list(memory);
   
 
 
@@ -59,6 +60,7 @@ int main (int argc, char** argv) {
 
 	/* step 6: call function: delete_list() in lc4_memory.c */
 	/*   TODO: call function & check for errors		*/
+  delete_list(&memory);
 
 
 	/* only return 0 if everything works properly */

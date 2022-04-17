@@ -64,23 +64,18 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
   while (!feof(my_obj_file)) {
 
     short unsigned int header_type = get_two_bytes(my_obj_file);
-    printf("header: %x\n", header_type);
-
     short unsigned int address = get_two_bytes(my_obj_file);
-    printf("address: %x\n", address);
-
     short unsigned int n = get_two_bytes(my_obj_file);
-    printf("n: %x\n", n);  
 
     if (header_type == 0xCADE | header_type == 0xDADA) {
       for (int i = 0; i < n; i++) {
           short unsigned int contents = get_two_bytes(my_obj_file);
-          printf("contents: %x\n", contents);
           add_to_list(memory, address + i, contents);
         }
     }
     if (header_type == 0xC3B7) {
       char* label = malloc(sizeof(char) * (n + 1));
+
         for (int i = 0; i < n; i++) {
           int byte_read = fgetc(my_obj_file);
           char letter = byte_read;
@@ -92,18 +87,19 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
         if (searched_memory != NULL) {
           searched_memory->label = label;
         } else {
-          // TODO add edge case for when address doesn't exist for label
-          // Probably need to change add_to_list to allow label
-          printf("ADDRESS FOR LABEL DOESN'T EXIST\n");
-          free(label);
+          add_to_list(memory, address, 0);
+          row_of_memory* created_memory = search_address(*memory, address);
+          created_memory->label = label;
         }
-        
     }
   }
-
-  print_list(*memory);
-  delete_list(memory);
-  // TODO handle_eof(my_obj_file);
+  
+  int close_status = fclose(my_obj_file);
+  if (close_status != 0) {
+    printf("Error closing file");
+    delete_list(memory);
+    return (2);
+  }
 
   return (0);
 }
