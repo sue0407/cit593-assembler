@@ -7,6 +7,7 @@
 /************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "lc4_memory.h"
 
 
@@ -19,14 +20,51 @@ int add_to_list (row_of_memory** head,
 {
 
     /* check to see if there is already an entry for this address and update the contents.  no additional steps required in this case */
+		if (*head != NULL) {
+      row_of_memory* temp = *head;
+      while(temp->next != NULL) {
+        if (temp->address == address) {
+          temp->contents = contents;
+          return 0;
+        }
+      }
+    }
     
-    /* allocate memory for a single node */
+  /* allocate memory for a single node */
+  row_of_memory *newMemory = malloc(sizeof(row_of_memory));
+  if (newMemory == NULL) return -1;
 
 	/* populate fields in newly allocated node w/ address&contents, NULL for label and assembly */
+  newMemory->address = address;
+  newMemory->contents = contents;
+  newMemory->label = NULL;
+  newMemory->assembly = NULL;
+  newMemory->next = NULL;
 
 	/* if *head is NULL, node created is the new head of the list! */
+  if (*head == NULL) *head = newMemory;
 
 	/* otherwise, insert node into the list in address ascending order */
+  else {
+    row_of_memory *prev, *curr = *head;
+    if (curr->next == NULL) {
+      curr->next = newMemory;
+      return 0;
+    }
+
+    curr = curr->next;
+    while(prev->next != NULL & curr->next != NULL) {
+      if (prev->address < address & curr->address > address) {
+        prev->next = newMemory;
+        newMemory->next = curr;
+        prev = prev->next;
+      }
+      prev = prev->next;
+      curr = curr->next;
+    }
+
+    curr->next = newMemory;
+  }
 
 	/* return 0 for success, -1 if malloc fails */
 
@@ -42,11 +80,15 @@ row_of_memory* search_address (row_of_memory* head,
 			       short unsigned int address )
 {
 	/* traverse linked list, searching each node for "address"  */
+  row_of_memory *curr = head;
 
-	/* return pointer to node in the list if item is found */
-
+  while(curr != NULL) {
+    /* return pointer to node in the list if item is found */
+    if (curr->address == address) return curr;
+    curr = curr->next;
+  }
+	
 	/* return NULL if list is empty or if "address" isn't found */
-
 	return NULL ;
 }
 
@@ -72,13 +114,20 @@ row_of_memory* search_opcode  (row_of_memory* head,
 void print_list (row_of_memory* head )
 {
 	/* make sure head isn't NULL */
+  if (head == NULL) return;
+  row_of_memory *curr = head;
 
 	/* print out a header */
+  printf("header: 0x%X\n", curr->contents);
+  curr = curr->next;
     
-    /* don't print assembly directives for non opcode 1 instructions if you are doing extra credit */
+  /* don't print assembly directives for non opcode 1 instructions if you are doing extra credit */
 
 	/* traverse linked list, print contents of each node */
-
+  while (curr != NULL) {
+    printf("header: 0x%X\n", curr->contents);
+    curr = curr->next;
+  }
 	return ;
 }
 
@@ -87,8 +136,19 @@ void print_list (row_of_memory* head )
  */
 int delete_list    (row_of_memory** head )
 {
-	/* delete entire list node by node */
-	/* set the list head pointer to NULL upon deletion */
+  if (head == NULL) return 0;
 
+  row_of_memory *prev = *head;
+  row_of_memory *curr = *head;
+  curr = curr->next;
+	/* delete entire list node by node */
+  while (curr != NULL) {
+    free(prev);
+
+    prev = prev->next;
+    curr = curr->next;
+  }
+	/* set the list head pointer to NULL upon deletion */
+  *head = NULL;
 	return 0 ;
 }
