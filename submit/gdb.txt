@@ -578,3 +578,232 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 The program no longer exists.
 The program is not being run.
 The program is not being run.
+Temporary breakpoint 1 at 0x4008a0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+60		print_list(memory);
+
+Program received signal SIGSEGV, Segmentation fault.
+__strlen_sse2 () at ../sysdeps/x86_64/multiarch/../strlen.S:120
+120	../sysdeps/x86_64/multiarch/../strlen.S: No such file or directory.
+Program not restarted.
+Temporary breakpoint 2 at 0x4008a0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+60		print_list(memory);
+print_list (head=0x6058b0) at lc4_memory.c:209
+209	  if (head == NULL) return;
+210	  row_of_memory *curr = head;
+213	  char label_header [8] = "<label>";
+214	  char address_header [10] = "<address>";
+215	  char contents_header [11] = "<contents>";
+216	  char assembly_header [11] = "<assembly>";
+218	  int total_length = 21 + strlen(label_header) + strlen(label_header) + strlen(contents_header) + strlen(assembly_header);
+220	  char* headers_str = (char*) malloc(sizeof(char) * total_length);
+222	  strcpy(headers_str, label_header);
+223	  add_spaces(&headers_str, 18);
+224	  strcat(headers_str, address_header);
+225	  add_spaces(&headers_str, 1);
+226	  strcat(headers_str, contents_header);
+227	  add_spaces(&headers_str, 1);
+228	  strcat(headers_str, assembly_header);
+230	  printf("%s\n", headers_str);
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+print_node (node=0x605a10, total_length=55) at lc4_memory.c:155
+155	  if ((node->assembly != NULL) & (strlen(node->assembly) > 10)) {
+$1 = 0x0
+
+Program received signal SIGSEGV, Segmentation fault.
+__strlen_sse2 () at ../sysdeps/x86_64/multiarch/../strlen.S:120
+120	../sysdeps/x86_64/multiarch/../strlen.S: No such file or directory.
+Temporary breakpoint 1 at 0x4008a0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+60		print_list(memory);
+print_list (head=0x6058b0) at lc4_memory.c:209
+209	  if (head == NULL) return;
+210	  row_of_memory *curr = head;
+213	  char label_header [8] = "<label>";
+214	  char address_header [10] = "<address>";
+215	  char contents_header [11] = "<contents>";
+216	  char assembly_header [11] = "<assembly>";
+218	  int total_length = 21 + strlen(label_header) + strlen(label_header) + strlen(contents_header) + strlen(assembly_header);
+220	  char* headers_str = (char*) malloc(sizeof(char) * total_length);
+222	  strcpy(headers_str, label_header);
+223	  add_spaces(&headers_str, 18);
+224	  strcat(headers_str, address_header);
+225	  add_spaces(&headers_str, 1);
+226	  strcat(headers_str, contents_header);
+227	  add_spaces(&headers_str, 1);
+228	  strcat(headers_str, assembly_header);
+230	  printf("%s\n", headers_str);
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+249	    curr = curr->next;
+247	  while (curr != NULL) {
+248	    print_node(curr, total_length);
+print_node (node=0x605a10, total_length=55) at lc4_memory.c:155
+155	  if ((node->assembly != NULL) & (node->assembly != 0) & (strlen(node->assembly) > 10)) {
+$1 = 13
+$2 = 0x6059f0 "END"
+There is no member named content.
+$3 = 0
+$4 = 0x0
+type = char *
+Temporary breakpoint 1 at 0x4008f0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 test1.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe428) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+60		print_list(memory);
+print_list (head=0x6058b0) at lc4_memory.c:200
+200	  if (head == NULL) return;
+201	  row_of_memory *curr = head;
+204	  char label_header [8] = "<label>";
+205	  char address_header [10] = "<address>";
+206	  char contents_header [11] = "<contents>";
+207	  char assembly_header [11] = "<assembly>";
+209	  int total_length = 21 + strlen(label_header) + strlen(label_header) + strlen(contents_header) + strlen(assembly_header);
+211	  char* headers_str = (char*) malloc(sizeof(char) * total_length);
+213	  strcpy(headers_str, label_header);
+214	  add_spaces(&headers_str, 18);
+215	  strcat(headers_str, address_header);
+216	  add_spaces(&headers_str, 1);
+217	  strcat(headers_str, contents_header);
+218	  add_spaces(&headers_str, 1);
+219	  strcat(headers_str, assembly_header);
+221	  printf("%s\n", headers_str);
+240	  while (curr != NULL) {
+241	     print_node(curr, total_length);
+242	    curr = curr->next;
+240	  while (curr != NULL) {
+241	     print_node(curr, total_length);
+242	    curr = curr->next;
+Undefined command: "nn".  Try "help".
+240	  while (curr != NULL) {
+241	     print_node(curr, total_length);
+242	    curr = curr->next;
+240	  while (curr != NULL) {
+241	     print_node(curr, total_length);
+print_node (node=0x605a10, total_length=55) at lc4_memory.c:154
+154	  if (node->assembly != NULL) {
+160	  char* node_str = (char*) malloc(sizeof(char) * total_length);   
+163	  int after_label_len = 25; // this is length of <label> and the 18 spaces after
+164	  if (node->label != NULL) {
+165	    strcpy(node_str, node->label);
+166	    after_label_len = after_label_len - strlen(node->label);
+167	  } else {
+171	  add_spaces(&node_str, after_label_len);
+174	  char* address = (char*) malloc(sizeof(char) * 10);
+175	  sprintf(address, "%04X      ", node->address);
+176	  strcat(node_str, address);
+177	  free(address);
+180	  char* contents = (char*) malloc(sizeof(char) * 10); // 10 is length of <contents>
+181	  sprintf(contents, "%04X", node->contents);    
+182	  strcat(node_str, contents);
+183	  free(contents);
+186	  if ((node->assembly != NULL) & !strcmp(node->assembly, "0x0")) {
+
+Program received signal SIGSEGV, Segmentation fault.
+__strcmp_ssse3 () at ../sysdeps/x86_64/multiarch/../strcmp.S:173
+173	../sysdeps/x86_64/multiarch/../strcmp.S: No such file or directory.
+Temporary breakpoint 1 at 0x4008a0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 ../obj\ files\ for\ student\ testing/testone.obj
+
+Temporary breakpoint 1, main (argc=2, argv=0x7fffffffe3e8) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+reverse_assemble (memory=0x6058b0) at lc4_disassembler.c:17
+17	  row_of_memory* searched_memory = search_opcode(memory, 0x0001);
+19	  while (searched_memory != NULL) {
+$1 = (row_of_memory *) 0x0
+Temporary breakpoint 2 at 0x4008a0: file lc4.c, line 20.
+Starting program: /home/codio/workspace/cit593-assembler/submit/lc4 ../obj\ files\ for\ student\ testing/testone.obj
+
+Temporary breakpoint 2, main (argc=2, argv=0x7fffffffe3e8) at lc4.c:20
+20	  char* filename = NULL; // name of the obj file
+30		row_of_memory* memory = NULL ;
+36	  printf ("# of arguments passed: %d\n", argc) ; // print the number of arguments passed (argc) // REMOVE
+37		if (argc < 2){ // if no file is passed in, print error message
+40	    filename = argv[1]; // else, pass the element of argv at index 1 to filename
+41	    printf("filename: %s\n", filename); // print filename - REMOVE
+42			my_obj_file = open_file(filename); // call open_file function and save the file to my_obj_file
+48	  int parse_file_status = parse_file (my_obj_file, &memory);
+49	  if (parse_file_status == 2) {
+57	  reverse_assemble(memory);
+reverse_assemble (memory=0x6058b0) at lc4_disassembler.c:17
+17	  row_of_memory* searched_memory = search_opcode(memory, 0x0001);
+search_opcode (head=0x6058b0, opcode=1) at lc4_memory.c:116
+116	    if (head == NULL) return NULL;
+$2 = (row_of_memory *) 0x6058b0
+121	    row_of_memory* curr = head;
+123	    while(curr->next != NULL) {
+139		return NULL ;
+$3 = (row_of_memory *) 0x6058b0
+$4 = (struct row_of_memory_struct *) 0x0

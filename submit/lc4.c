@@ -45,17 +45,19 @@ int main (int argc, char** argv) {
   
 	/* step 3: call function: parse_file() in lc4_loader.c 	*/
 	/*   TODO: call function & check for errors		*/
-  parse_file (my_obj_file, &memory);
-  print_list(memory);
-  
+  int parse_file_status = parse_file (my_obj_file, &memory);
+  if (parse_file_status == 2) {
+    printf("error: parsing file");
+    return (2);
+  }
 
 
 	/* step 4: call function: reverse_assemble() in lc4_disassembler.c */
 	/*   TODO: call function & check for errors		*/
-
+  reverse_assemble(memory);
 
 	/* step 5: call function: print_list() in lc4_memory.c 	*/
-	/*   TODO: call function 				*/
+	print_list(memory);
 
 
 	/* step 6: call function: delete_list() in lc4_memory.c */

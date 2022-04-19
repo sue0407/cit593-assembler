@@ -74,14 +74,19 @@ int parse_file (FILE* my_obj_file, row_of_memory** memory)
         }
     }
     if (header_type == 0xC3B7) {
-      char* label = malloc(sizeof(char) * (n + 1));
+      char* label = (char*) malloc(sizeof(char) * (n + 1));
 
-        for (int i = 0; i < n; i++) {
-          int byte_read = fgetc(my_obj_file);
-          char letter = byte_read;
-
-          strncat(label, &letter, 1);
-        };
+      for (int i = 0; i < n; i++) {
+        int byte_read = fgetc(my_obj_file);
+        char letter [2] = " ";
+        letter[0] = byte_read;
+        
+        if (i == 0) {
+          strcpy(label, letter);
+        } else {
+          strcat(label, letter);
+        }
+      };
 
         row_of_memory* searched_memory = search_address(*memory, address);
         if (searched_memory != NULL) {
