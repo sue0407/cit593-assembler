@@ -36,6 +36,8 @@ int reverse_assemble (row_of_memory* memory)
     char reg_t_str [3] = {};
     sprintf(reg_t_str, "R%d", reg_t);
 
+    short signed int imm_val = 50; // set it to a value that isn't possible to reach
+
     switch(opcode) {
       case 0: // ADD
         strcpy(instr, "ADD ");
@@ -56,24 +58,47 @@ int reverse_assemble (row_of_memory* memory)
       case 6:
       case 7:
         strcpy(instr, "ADD ");
-        short unsigned int imm_val = searched_memory->contents & 0b0000000000011111;
-
-        if (imm_val < 10) {
-          sprintf(reg_t_str, "#%d", imm_val);
-        } else {
-          sprintf(reg_t_str, "%d", imm_val);
-        }     
+        imm_val = searched_memory->contents & 0b0000000000011111;
+        if (imm_val & 0b0000000000010000) {
+          short signed int negative_or = 0b1111111111110000;
+          imm_val = imm_val | negative_or;
+        }
         
         break;
     }
-    int tot_str_len = 
-      strlen(instr) + strlen(reg_d_str) + strlen(reg_s_str) + strlen(reg_t_str) +1;
+    int imm_length = 0;
+    if (imm_val != 50) {
+      // char* imm_val_str = malloc(sizeof(char) * 5);
+       // sprintf(reg_t_str, "#%d", imm_val);
+      if (imm_val < 10 & imm_val >= 0) imm_length = 1;
+      else if (imm_val > 10) imm_length = 2;
+      else if (imm_val < 0) imm_length = 2;
+      else imm_length = 3;
+    }
+
+
+    int tot_str_len = strlen(instr) + strlen(reg_d_str) + strlen(reg_s_str) + 1;
+    if (imm_length != 0) {
+      tot_str_len = tot_str_len + imm_length + 1; // +1 for the #
+    } else {
+      tot_str_len = tot_str_len + strlen(reg_t_str);
+    }
 
     char* assembly = malloc(sizeof(char) * tot_str_len);
     strcpy(assembly, instr);
     strcat(assembly, reg_d_str);
     strcat(assembly, reg_s_str);
-    strcat(assembly, reg_t_str);
+
+    if ((imm_val != 50) & (imm_length != 0)) {
+      char* imm_val_str = malloc(sizeof(char) * (imm_length + 1));
+      sprintf(imm_val_str, "#%d", imm_val);
+      strcat(assembly, imm_val_str);
+
+      free(imm_val_str);
+    } else {
+      strcat(assembly, reg_t_str);
+    }
+    
 
     searched_memory->assembly = assembly;
 
